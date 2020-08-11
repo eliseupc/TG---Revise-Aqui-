@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block body %}
+    <br>
+    <h2><strong> Cadastrar Agendamentos </strong></h2>
+    <br>
+	<form method="post">
+		{% csrf_token %}
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="{{ form.cliente.id_for_label }}">Cliente:</label>
+                   {{ form.cliente|add_class:"form-control" }}
+				</div>
+			</div>
+		
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="{{ form.consultor.id_for_label }}">Consultor:</label>
+                   {{ form.consultor|add_class:"form-control" }}
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="{{ form.servico.id_for_label }}">Serviço:</label>
+                   {{ form.servico|add_class:"form-control" }}
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="{{ form.data.id_for_label }}">Data:</label>
+                   {{ form.data|add_class:"form-control"|attr:"type:date" }}
+				</div>
+			</div>
+
+			<div class="col-md-6">
+
+				<div class="form-group">
+					<label for="{{ form.hora.id_for_label }}">Horário :</label>
+                   {{ form.hora|add_class:"form-control" }}
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="{{ form.preco.id_for_label }}">Valor R$:</label>
+                   {{ form.preco|add_class:"form-control" }}
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="{{ form.pagamento.id_for_label }}">Pagamento :</label>
+                   {{ form.pagamento|add_class:"form-control" }}
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="{{ form.status.id_for_label }}">Status :</label>
+                   {{ form.status|add_class:"form-control"}}
+				</div>
+			</div>
+		
+			<div class="col-md-12">
+				<button class="btn btn-success" type="submit"> Salvar </button>
+				<a href="{% url 'home' %}" class="btn btn-danger" type="submit"> Cancelar </a>
+			</div>
+		
+	</form>
+{% endblock body %}

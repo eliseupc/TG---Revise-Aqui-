@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block body %}
+<style type="text/css">
+.alert {
+padding: 0 15px;
+margin-bottom: 1rem;
+border: 1px solid transparent;
+border-radius: .25rempx
+}
+.alert p{
+padding: 7px 0 7px;
+}
+.alert.success{
+color: #3c763d;
+background-color: #dff0d8;
+border-color: #d0e9c6;}
+</style>
+<br>
+<br>
+ <div class="row">
+ <div class="col-lg-12">
+ <div class="panel panel-default">
+ <div class="panel-heading">
+  <strong>Listar Agendamentos</strong>
+  </div>
+   
+   <div class="panel-body">
+   <div class="table-responsive">
+   <table class="table table-striped table-bordered table-hover">
+    <thead>
+                                               
+    <tr>
+    
+    <th>Cliente</th>
+    <th>Consultor</th>
+    <th>Serviço</th>
+    <th>Data</th>
+    <th>Hora</th>
+    <th>Status</th>
+    <th>Valor R$</th>
+    <th>Forma PG.</th>
+    <th>Editar</th>
+    <th>Deletar</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for list in relacao %}
+    <tr>
+    
+    <td>{{list.cliente}}</td>
+    <td>{{list.consultor}}</td>
+    <td>{{list.servico}}</td>
+    <td>{{list.data}}</td>
+    <td>{{list.hora}}</td>
+    <td>{{list.get_status_display}}</td>
+    <td>{{list.preco}}</td>
+    <td>{{list.get_pagamento_display}}</td>
+    <td><a href="{% url 'editar' list.id %}" class="btn btn-info">Editar</a></td>
+    <td><a href="{% url 'deletar' list.id %}" class="btn btn-danger">Deletar</a></td>
+    </tr>
+    {% empty %}
+    <div class="alert danger">
+    <p>Sem agendamentos no momento</p>
+    </div>
+    {% endfor %}
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="text-info">
+    <span class="step-links">
+    {% if relacao.has_previous %}
+    <a href="?page=1"></a>
+    <a class="text-info" href="?page={{ relacao.previous_page_number }}"> Anterior </a>
+    {% endif %}
+    <span class="current">
+    Paginas {{ relacao.number }} de {{ relacao.paginator.num_pages }}
+    </span>
+    {% if relacao.has_next %}
+    <a class="text-info" href="?page={{ relacao.next_page_number }}"> Próxima </a>
+    <a href="?page={{ relacao.paginator.num_pages }}"></a>
+    {% endif %}
+    </span>
+    </div>
+{% endblock body %}

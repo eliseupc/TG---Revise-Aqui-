@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block body %}
+    <br>
+    <h2><strong> Cadastrar Clientes </strong></h2>
+    <br>
+	<form method="post">
+		{% csrf_token %}
+		<div class="row">
+			<div class="col-md-2">
+				<div class="form-group">
+					<label for="{{ form.cpf.id_for_label }}">CPF :</label>
+                   {{ form.cpf|add_class:"form-control" }}
+				</div>
+			</div>
+
+			<div class="col-md-10">
+				<div class="form-group">
+					<label for="{{ form.nome.id_for_label }}">Nome :</label>
+                   {{ form.nome|add_class:"form-control" }}
+				</div>
+			</div>
+		
+		
+			<div class="col-md-2">
+				<div class="form-group">
+					<label for="{{ form.telefone.id_for_label }}">Telefone :</label>
+                   {{ form.telefone|add_class:"form-control" }}
+				</div>
+			</div>
+
+			<div class="col-md-10">
+				<div class="form-group">
+					<label for="{{ form.endereco.id_for_label }}">Endereço :</label>
+                   {{ form.endereco|add_class:"form-control" }}
+				</div>
+			</div>
+
+			<div class="col-md-2">
+				<div class="form-group">
+					<label for="{{ form.cep.id_for_label }}">CEP :</label>
+                   {{ form.cep|add_class:"form-control" }}
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="form-group">
+					<label for="{{ form.bairro.id_for_label }}">Bairro :</label>
+                   {{ form.bairro|add_class:"form-control" }}
+				</div>
+			</div>
+
+			<div class="col-md-6">
+				<div class="form-group">
+					<label for="{{ form.cidade.id_for_label }}">Cidade :</label>
+                   {{ form.cidade|add_class:"form-control" }}
+				</div>
+			</div>
+
+			<div class="col-md-2">
+				<div class="form-group">
+					<label for="{{ form.estado.id_for_label }}">Estado :</label>
+                   {{ form.estado|add_class:"form-control" }}
+				</div>
+			</div>
+			
+			<div class="col-md-10">
+				<div class="form-group">
+					<label for="{{ form.email.id_for_label }}">Email :</label>
+                   {{ form.email|add_class:"form-control" }}
+				</div>
+			</div>
+
+			<div class="col-md-12">
+				<button class="btn btn-success" type="submit"> Salvar </button>
+				<a href="{% url 'home' %}" class="btn btn-danger" type="submit"> Cancelar </a>
+			</div>
+		
+	</div>
+		
+	</form>
+{% endblock body %}
