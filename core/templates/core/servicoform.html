@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block body %}
+    <br>
+    <h2><strong>Cadastrar Serviços</strong></h2>
+    <br>
+	<form method="post">
+		{% csrf_token %}
+		<div class="row">
+			<div class="col-md-6">
+				<div class="form-group ">
+					<label for="{{ form.nome.id_for_label }}">Nome :</label>
+                   {{ form.nome|add_class:"form-control" }}
+				</div>
+			</div>
+			
+			<div class="col-md-6">
+				<div class="form-group ">
+					<label for="{{ form.valor_servico.id_for_label }}">Valor:</label>
+                   {{ form.valor_servico|add_class:"form-control" }}
+				</div>
+			</div>
+		
+			<div class="col-md-6">
+				<button class="btn btn-success" type="submit"> Salvar </button>
+				<a href="{% url 'home' %}" class="btn btn-danger" type="submit"> Cancelar </a>
+			</div>
+				   
+	</form>
+{% endblock body %}

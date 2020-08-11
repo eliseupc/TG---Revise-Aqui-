@@ -1,0 +1,198 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Titulo -->
+    <title>Revise Aqui - SRA</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/logotipo.png' %}">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="{% static 'css/metisMenu.min.css'%}" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="{% static 'css/timeline.css'%}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static 'css/startmin.css' %}" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="{% static 'css/morris.css'%}" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="{% static 'css/footer.css'%}" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="{% static 'css/font-awesome.min.css'%}" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    <style type="text/css">
+            .alert {
+            padding: 0 15px;
+            margin-bottom: 1rem;
+            border: 1px solid transparent;
+            border-radius: .25rempx
+            }
+            .alert p{
+            padding: 7px 0 7px;
+             }
+           .alert.success{
+           color: #3c763d;
+           background-color: #dff0d8;
+           border-color: #d0e9c6;}
+     </style>
+</head>
+
+<body>
+    
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background-color: #024270;">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">
+                    <img src="{% static 'img/logotipo.png' %}" width="30" height="30" alt="">
+                </a>
+            </div>
+
+            <ul class="nav navbar-nav navbar-center navbar-top-links">
+                <li><a href="/"><i class="fa fa-home fa-fw"></i><strong>Revise Aqui - {{ data_base }}</strong></a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right navbar-top-links">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user fa-fw"></i>{%if user.is_authenticated%}{{user.get_full_name}}{%endif%}<b
+                            class="caret"></b>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <p></p>
+                        <a class="fa fa-sign-out fa-fw" href="{% url 'logout_user' %}">Sair</a>
+                    </div>
+                </li>
+            </ul>
+            <!-- /.navbar-top-links -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li class="sidebar-search">
+                            <div class="input-group custom-search-form">
+                                <input type="text" class="form-control" placeholder="Buscar Agenda">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                            </span>
+                            </div>
+                            <!-- /input-group -->
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li>
+                            <a href="/" class="active"><i class="fa fa-dashboard fa-fw"></i><strong> Dashboard</strong></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'cliente' %}"><i class="fa fa-wrench fa-fw"></i><strong> Cadastrar Clientes</strong></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'lista_cliente' %}"><i class="fa fa-table fa-fw"></i><strong> Listar Clientes</strong></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'consultor' %}"><i class="fa fa-wrench fa-fw"></i><strong> Cadastrar Consultores</strong></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'lista_consultor' %}"><i class="fa fa-table fa-fw"></i><strong> Listar Consultores</strong></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'servico' %}"><i class="fa fa-wrench fa-fw"></i><strong> Cadastrar Serviços
+                            </strong></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'lista_servico' %}"><i class="fa fa-table fa-fw"></i><strong> Listar Serviços</strong></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'agenda' %}"><i class="fa fa-table fa-fw"></i><strong> Cadastrar Agendamentos</strong></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'lista' %}"><i class="fa fa-table fa-fw"></i><strong> Listar Agendamentos</strong></a>
+                        </li>
+                        {% if user.is_superuser %}
+                        <li>
+                            <a href="{% url 'add_usuario' %}"><i class="fa fa-table fa-fw"></i><strong> Cadastrar Funcionários</strong></a>
+                        </li>
+                        <li>
+                            <a href="{% url 'lista_usuario' %}"><i class="fa fa-table fa-fw"></i><strong> Listar Funcionários</strong></a>
+                        </li>
+                        {% endif %}
+
+                        {% endif %}
+                    </ul> 
+                </div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                {% block body %}
+
+
+                {% endblock body %}
+
+            </div>
+        </div>
+
+        <!-- ##### Footer Area Start ##### -->
+    
+        <footer class="fixar-rodape">
+            <p>&copy; <a href="/"><img src="{% static 'img/logotipo.png' %}"  width="100" height="100"alt="right"></a></p>
+        </footer>
+        
+
+        <!-- jQuery -->
+        <script src="{% static 'js/jquery.min.js'%}"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="{% static 'js/bootstrap.min.js'%}"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="{% static 'js/metisMenu.min.js'%}"></script>
+
+        <!-- Morris Charts JavaScript -->
+        <script src="{% static 'js/raphael.min.js'%}"></script>
+        <script src="{% static 'js/morris.min.js'%}"></script>
+        <script src="{% static 'js/morris-data.js'%}"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="{% static 'js/startmin.js'%}"></script>
+        <script src="{% static 'js/excanvas.min.js'%}"></script>
+        <script src="{% static 'js/jquery.flot.js'%}"></script>
+        <script src="{% static 'js/jquery.flot.pie.js'%}"></script>
+        <script src="{% static 'js/jquery.flot.resize.js'%}"></script>
+        <script src="{% static 'js/jquery.flot.time.js'%}"></script>
+        <script src="{% static 'js/jquery.flot.tooltip.min.js'%}"></script>
+        <script src="{% static 'js/flot-data.js'%}"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="{% static 'js/startmin.js'%}"></script>
+
+</body>
+
+</html>
